@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springsecurity.repository.MemberRepository">
+
+    <insert id="join" parameterType="com.example.springsecurity.domain.Member"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into member (userid, password, role, created_date, failcount)
+        values (#{userid}, #{password}, #{role}, #{createdDate}, #{failcount})
+    </insert>
+
+    <select id="findByUserid" parameterType="String" resultType="com.example.springsecurity.domain.Member">
+        select * from member where userid = #{userid}
+    </select>
+
+</mapper>
