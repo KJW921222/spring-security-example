@@ -14,9 +14,5 @@ public class MemberService {
     public void join(Member member) {
         memberRepository.join(member);
     }
-    
-    public Member findByUserid(Member member) {
-        return memberRepository.findByUserid(member.getUserid());
-    }
 
 }

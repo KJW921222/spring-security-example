@@ -17,4 +17,10 @@ public class Member {
     private RoleEnum role;
     private LocalDateTime createdDate;
     private long failcount;
+
+    public Member(String userid, String password, RoleEnum role) {
+        this.userid = userid;
+        this.password = password;
+        this.role = role;
+    }
 }

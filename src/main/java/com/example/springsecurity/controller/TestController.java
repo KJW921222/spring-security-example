@@ -5,6 +5,7 @@ import com.example.springsecurity.domain.Member;
 import com.example.springsecurity.domain.RoleEnum;
 import com.example.springsecurity.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -31,17 +32,20 @@ public class TestController {
     }
 
     @GetMapping("/customer")
-    public @ResponseBody String customer() {
+    @ResponseBody
+    public String customer() {
         return "customer";
     }
 
     @GetMapping("/seller")
-    public @ResponseBody String seller() {
+    @ResponseBody
+    public String seller() {
         return "seller";
     }
 
     @GetMapping("/admin")
-    public @ResponseBody String admin() {
+    @ResponseBody
+    public String admin() {
         return "admin";
     }
 
@@ -67,13 +71,15 @@ public class TestController {
     }
 
     @GetMapping("/userid")
-    public @ResponseBody String userid(@AuthenticationPrincipal CustomUserDetails userDetails) {
+    @ResponseBody
+    public String userid(@AuthenticationPrincipal CustomUserDetails userDetails) {
         return userDetails.getUsername();
     }
 
     @Secured("ROLE_ADMIN")
     @GetMapping("/role")
-    public @ResponseBody List<String> role(@AuthenticationPrincipal CustomUserDetails userDetails) {
+    @ResponseBody
+    public List<String> role(@AuthenticationPrincipal CustomUserDetails userDetails) {
         return userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
     }
